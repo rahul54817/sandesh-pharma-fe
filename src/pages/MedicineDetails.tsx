@@ -13,7 +13,7 @@ export default function MedicineDetails() {
     return (
       <>
         <Header />
-        <div className="container py-5 text-center">
+        <div className="container py-5 text-center mt-6">
           <h4>Medicine not found</h4>
           <button className="btn btn-primary mt-3" onClick={() => navigate(-1)}>
             Go Back
@@ -29,7 +29,7 @@ export default function MedicineDetails() {
   return (
     <>
       <Header />
-      <div className="container py-5">
+      <div className="container py-5 " style={{marginTop : '75px'}}>
         <h2 className="text-primary">{medicine.name}</h2>
         <p><strong>Original Price:</strong> ₹{medicine.price}</p>
         <p><strong>Discount:</strong> {medicine.discount}%</p>
