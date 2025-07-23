@@ -36,6 +36,7 @@ export default function Login() {
               className="form-control"
               placeholder="Email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -45,6 +46,7 @@ export default function Login() {
               type="password"
               className="form-control"
               placeholder="Password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -65,7 +67,7 @@ export default function Login() {
 
           <button
             className="btn w-100 mb-3"
-            style={{ backgroundColor: '#e91e63', color: '#fff' }}
+            style={{ backgroundColor: '#0c5360ff', color: '#fff' }}
             onClick={handleLogin}
           >
             LOGIN
