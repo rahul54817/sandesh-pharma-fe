@@ -3,4 +3,5 @@ export interface IMedicineProp {
   price : number;
   discount : number;
   description?: string
+  image ?: string;
 }

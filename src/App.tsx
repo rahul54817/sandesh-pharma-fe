@@ -6,21 +6,24 @@ import MedicineDetails from './pages/MedicineDetails';
 import Cart from './pages/Cart';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ErrorPage from './pages/ErrorPage';
+import Home from './pages/Home';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/' element = {<Home />} />
         <Route path="/medicines" element={<Medicines />} />
         <Route path="/medicines/:name" element={<MedicineDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        contact
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
-};
+};  
 
 export default App;
