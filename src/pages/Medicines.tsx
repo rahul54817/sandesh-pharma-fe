@@ -23,10 +23,7 @@ export default function Medicines() {
     med.name.toLowerCase().includes(search.toLowerCase())
   )
 
-  const handleAddToCart = (medicine: IMedicineProp) => {
-    setCart((prev) => [...prev, medicine])
-    alert(`${medicine.name} added to cart!`)
-  }
+  
 
   return (
     <>
