@@ -4,6 +4,7 @@ import type { IMedicineProp } from '../types/medicine'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { medicineList } from '../types/medicineList'
+import { useCart } from '../context/CartContext'
 
 // const medicineList: IMedicineProp[] = [
 //   { name: 'Paracetamol', price: 50, discount: 10 },
@@ -16,6 +17,7 @@ import { medicineList } from '../types/medicineList'
 export default function Medicines() {
   const [search, setSearch] = useState('')
   const [cart, setCart] = useState<IMedicineProp[]>([])
+  const { addToCart } = useCart()
 
   const filtered = medicineList.filter((med) =>
     med.name.toLowerCase().includes(search.toLowerCase())
@@ -54,7 +56,7 @@ export default function Medicines() {
           <div className="row">
             {filtered.map((med, idx) => (
               <div className="col-12 col-sm-6 col-md-4 mb-4" key={idx}>
-                <MedicineCard {...med} onAdd={() => handleAddToCart(med)} />
+                <MedicineCard {...med} onAdd={() => addToCart(med)} />
               </div>
             ))}
           </div>
