@@ -16,7 +16,7 @@ import { useCart } from '../context/CartContext'
 
 export default function Medicines() {
   const [search, setSearch] = useState('')
-  const [cart, setCart] = useState<IMedicineProp[]>([])
+  const [cart] = useState<IMedicineProp[]>([])
   const { addToCart } = useCart()
 
   const filtered = medicineList.filter((med) =>
