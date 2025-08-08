@@ -33,9 +33,14 @@ export default function MedicineDetails() {
     medicine.price - (medicine.price * medicine.discount) / 100;
 
   const handleAddToCart = () => {
-    addToCart(medicine);
+    // Create a cart item with default quantity of 1
+    const cartItem = {
+      ...medicine,
+      quantity: 1
+    };
+    addToCart(cartItem);
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000); // Remove message after 2 sec
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (

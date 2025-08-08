@@ -10,6 +10,7 @@ import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
 import Order from './pages/Orders';
+import OrderDetail from './pages/OrderDetail';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Order />} />
+        <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

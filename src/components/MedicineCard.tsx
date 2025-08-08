@@ -1,13 +1,28 @@
 import { Link } from "react-router-dom";
 import type { IMedicineProp } from "../types/medicine";
+import { useState } from "react";
 
 interface Props extends IMedicineProp {
   onAdd?: () => void;
 }
 
-export default function MedicineCard({ name, price, discount, image, onAdd }: Props) {
-  
+export default function MedicineCard({
+  id,
+  name,
+  price,
+  discount,
+  image,
+  onAdd,
+  description,
+}: Props) {
+  const [quantity, setQuantity] = useState(1);
   const finalPrice = price - (price * discount) / 100;
+
+  const handleAddToCart = () => {
+    if (onAdd) {
+      onAdd(); // Call the onAdd callback if provided
+    }
+  };
 
   return (
     <div
@@ -29,8 +44,9 @@ export default function MedicineCard({ name, price, discount, image, onAdd }: Pr
       {/* Medicine Image */}
       <div style={{ width: "100%", height: "180px", overflow: "hidden" }}>
         <img
-          src= {`${image}`}
+          src={image || "/placeholder.png"}
           alt={name}
+          className="img-fluid"
           style={{
             width: "100%",
             height: "100%",
@@ -46,17 +62,39 @@ export default function MedicineCard({ name, price, discount, image, onAdd }: Pr
       <div className="card-body text-center p-3">
         <h5 className="card-title fw-bold text-primary mb-2">
           <Link
-            to={`/medicines/${name}`}
+            to={`/medicines/${id || name}`}
             className="text-decoration-none text-primary"
           >
             {name}
           </Link>
         </h5>
-        <p className="mb-1 text-muted">
-          Price: <span className="fw-semibold">₹{price}</span>
-        </p>
-        <p className="mb-1 text-success fw-semibold">Discount: {discount}%</p>
-        <p className="fw-bold text-dark fs-5 mb-0">₹{finalPrice.toFixed(2)}</p>
+        {description && (
+          <p className="text-muted small mb-2">{description}</p>
+        )}
+        <div className="d-flex justify-content-center gap-3 mb-2">
+          <p className="mb-0 text-muted">
+            <s>₹{price.toFixed(2)}</s>
+          </p>
+          <p className="mb-0 text-success fw-semibold">{discount}% OFF</p>
+        </div>
+        <p className="fw-bold text-dark fs-5 mb-3">₹{finalPrice.toFixed(2)}</p>
+        
+        {/* Quantity Selector */}
+        <div className="d-flex justify-content-center mb-3">
+          <button
+            className="btn btn-outline-secondary btn-sm"
+            onClick={() => setQuantity(q => Math.max(1, q - 1))}
+          >
+            -
+          </button>
+          <span className="mx-3 align-self-center">{quantity}</span>
+          <button
+            className="btn btn-outline-secondary btn-sm"
+            onClick={() => setQuantity(q => q + 1)}
+          >
+            +
+          </button>
+        </div>
       </div>
 
       {/* Card Footer */}
@@ -73,9 +111,9 @@ export default function MedicineCard({ name, price, discount, image, onAdd }: Pr
           }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          onClick={onAdd}
+          onClick={handleAddToCart}
         >
-          Add to Cart
+          Add to Cart ({quantity})
         </button>
       </div>
     </div>
