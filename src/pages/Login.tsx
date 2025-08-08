@@ -29,7 +29,6 @@ export default function Login() {
             <h4 className="fw-bold">LOGIN</h4>
           </div>
 
-
           <div className="mb-3">
             <input
               type="email"
