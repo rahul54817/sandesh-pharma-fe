@@ -19,7 +19,6 @@ export default function Login() {
     <>
       <div
         className="d-flex justify-content-center align-items-center vh-100"
-       
       >
         <div
           className="card shadow p-4"
@@ -29,6 +28,7 @@ export default function Login() {
             <img src={logo} alt="Sandesh Pharma" height="75" className="mb-2" />
             <h4 className="fw-bold">LOGIN</h4>
           </div>
+
 
           <div className="mb-3">
             <input
