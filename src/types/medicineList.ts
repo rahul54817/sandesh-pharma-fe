@@ -17,6 +17,7 @@ import product15 from "../assets/product15.jpg"
 
 export const medicineList: IMedicineProp[] = [
   {
+    id : "1",
     name: 'Paracetamol',
     price: 50,
     discount: 10,
@@ -24,6 +25,7 @@ export const medicineList: IMedicineProp[] = [
     image : product1
   },
   {
+    id : "2",
     name: 'Amoxicillin',
     price: 120,
     discount: 15,
@@ -31,6 +33,7 @@ export const medicineList: IMedicineProp[] = [
     image : product2
   },
   {
+     id :"3",
     name: 'Ibuprofen',
     price: 80,
     discount: 12,
@@ -38,6 +41,7 @@ export const medicineList: IMedicineProp[] = [
     image : product3
   },
   {
+     id :"4",
     name: 'Cetrizine',
     price: 40,
     discount: 5,
@@ -45,6 +49,7 @@ export const medicineList: IMedicineProp[] = [
     image : product4
   },
   {
+     id :"5",
     name: 'Pantoprazole',
     price: 95,
     discount: 20,
@@ -52,6 +57,7 @@ export const medicineList: IMedicineProp[] = [
     image : product5
   },
   {
+     id :"6",
     name: 'Azithromycin',
     price: 150,
     discount: 18,
@@ -59,6 +65,7 @@ export const medicineList: IMedicineProp[] = [
     image : product6
   },
   {
+     id :"7",
     name: 'Dolo 650',
     price: 60,
     discount: 8,
@@ -66,6 +73,7 @@ export const medicineList: IMedicineProp[] = [
     image : product7
   },
   {
+     id :"8",
     name: 'Metformin',
     price: 70,
     discount: 10,
@@ -73,6 +81,7 @@ export const medicineList: IMedicineProp[] = [
     image : product8
   },
   {
+     id :"9",
     name: 'Atorvastatin',
     price: 110,
     discount: 15,
@@ -80,6 +89,7 @@ export const medicineList: IMedicineProp[] = [
     image : product9
   },
   {
+     id :"10",
     name: 'Montelukast',
     price: 90,
     discount: 10,
@@ -87,6 +97,7 @@ export const medicineList: IMedicineProp[] = [
     image : product10
   },
   {
+     id :"11",
     name: 'Losartan',
     price: 85,
     discount: 12,
@@ -94,6 +105,7 @@ export const medicineList: IMedicineProp[] = [
     image : product11
   },
   {
+     id :"12",
     name: 'Levocetirizine',
     price: 45,
     discount: 5,
@@ -101,6 +113,7 @@ export const medicineList: IMedicineProp[] = [
     image : product12
   },
   {
+     id :"13",
     name: 'Diclofenac',
     price: 75,
     discount: 10,
@@ -108,6 +121,7 @@ export const medicineList: IMedicineProp[] = [
     image : product13
   },
   {
+     id :"14",
     name: 'Ranitidine',
     price: 65,
     discount: 20,
@@ -115,6 +129,7 @@ export const medicineList: IMedicineProp[] = [
     image : product14
   },
   {
+     id :"15",
     name: 'Aspirin',
     price: 55,
     discount: 10,

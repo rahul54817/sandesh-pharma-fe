@@ -1,0 +1,66 @@
+/* src/styles/OrderDetail.css */
+.order-detail-container {
+  min-height: 100vh;
+  padding-top: 90px;
+  background: #f5f7fa;
+}
+
+.order-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #127c91;
+}
+
+.order-header {
+  margin-bottom: 1.5rem;
+}
+
+.order-status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.order-status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.order-status-delivered {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.order-table {
+  width: 100%;
+}
+
+.order-table th {
+  text-align: left;
+  padding: 0.75rem;
+  background: #f8f9fa;
+}
+
+.order-table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.summary-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border-top: 5px solid #127c91;
+}

@@ -4,15 +4,17 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cart } = useCart();
+  const { cart, increaseQuantity, decreaseQuantity, removeItem } = useCart();
   const navigate = useNavigate();
 
   const total = cart.reduce((sum, item) => {
     const finalPrice = item.price - (item.price * item.discount) / 100;
-    return sum + finalPrice;
+    return sum + (finalPrice * item.quantity);
   }, 0);
 
-   const handleCheckout = () => {
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  const handleCheckout = () => {
     navigate("/checkout");
   };
 
@@ -107,15 +109,29 @@ export default function Cart() {
                         </div>
 
                         {/* Quantity */}
-                        <div className="ms-auto mt-3 mt-md-0">
-                          <input
-                            type="number"
-                            min="1"
-                            defaultValue={1}
-                            className="form-control"
-                            style={{ width: "70px" }}
-                          />
+                        <div className="ms-auto d-flex align-items-center">
+                          <button
+                            className="btn btn-outline-secondary btn-sm"
+                            onClick={() => decreaseQuantity(item.id)}
+                            disabled={item.quantity <= 1}
+                          >
+                            -
+                          </button>
+                          <span className="mx-2">{item.quantity}</span>
+                          <button
+                            className="btn btn-outline-secondary btn-sm"
+                            onClick={() => increaseQuantity(item.id)}
+                          >
+                            +
+                          </button>
+                          <button
+                            className="btn btn-danger btn-sm ms-2"
+                            onClick={() => removeItem(item.id)}
+                          >
+                            ×
+                          </button>
                         </div>
+
                       </div>
                     );
                   })}
@@ -131,11 +147,11 @@ export default function Cart() {
                   <h4 className="fw-bold mb-3">Order Summary</h4>
                   <div className="d-flex justify-content-between mb-2">
                     <span>Total Items:</span>
-                    <span>{cart.length}</span>
+                    <span>{totalItems}</span> {/* Now shows sum of quantities */}
                   </div>
                   <div className="d-flex justify-content-between mb-3">
                     <span>Total Price:</span>
-                    <span className="fw-bold">₹{total.toFixed(2)}</span>
+                    <span className="fw-bold">₹{total.toFixed(2)}</span> {/* Correct total */}
                   </div>
                   <button
                     className="btn btn-success w-100 py-2 rounded-pill fw-bold"

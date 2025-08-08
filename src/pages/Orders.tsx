@@ -134,7 +134,7 @@ export default function Orders() {
                       <strong>Total: ₹{orderTotal.toFixed(2)}</strong>
                       <button
                         className="btn btn-outline-primary rounded-pill px-4"
-                        onClick={() => navigate(`/orders/${order.id}`)} // You can implement order details page later
+                       onClick={() => navigate(`/orders/${order.id}`)} // You can implement order details page later
                       >
                         View Details
                       </button>

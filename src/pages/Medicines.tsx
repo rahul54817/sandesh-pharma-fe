@@ -13,7 +13,9 @@ export default function Medicines() {
     med.name.toLowerCase().includes(search.toLowerCase())
   )
 
-  
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
+
+
 
   return (
     <>
@@ -54,27 +56,26 @@ export default function Medicines() {
 
           {/* Medicines Grid */}
           <div className="row">
-            {filtered.length > 0 ? (
-              filtered.map((med, idx) => (
-                <div className="col-12 col-sm-6 col-md-4 mb-4" key={idx}>
-                  <MedicineCard {...med} onAdd={() => addToCart(med)} />
-                </div>
-              ))
-            ) : (
-              <p className="text-center text-muted">No medicines found.</p>
-            )}
+            {filtered.map((med) => (
+              <div className="col-12 col-sm-6 col-md-4 mb-4" key={med.id}>
+                <MedicineCard
+                  {...med}
+                  onAdd={() => addToCart({ ...med, quantity: 1 })}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Cart Summary */}
           {cart.length > 0 && (
             <div className="mt-5 p-3 rounded shadow-sm bg-light">
               <h5 className="fw-bold text-primary">
-                🛒 Cart: {cart.length} item(s)
+                🛒 Cart: {totalItems} item(s)
               </h5>
               <ul className="list-unstyled mb-0">
                 {cart.map((item, i) => (
                   <li key={i} className="text-muted">
-                    - {item.name} (₹{item.price})
+                    - {item.name} (₹{item.price}) × {item.quantity}
                   </li>
                 ))}
               </ul>
