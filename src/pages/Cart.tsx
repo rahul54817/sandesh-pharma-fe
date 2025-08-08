@@ -12,6 +12,11 @@ export default function Cart() {
     return sum + finalPrice;
   }, 0);
 
+   const handleCheckout = () => {
+    navigate("/checkout");
+  };
+
+
   return (
     <>
       <Header />
@@ -138,6 +143,7 @@ export default function Cart() {
                       background: "linear-gradient(90deg, #0c5360, #127c91)",
                       border: "none",
                     }}
+                    onClick={handleCheckout}
                   >
                     Proceed to Checkout
                   </button>
