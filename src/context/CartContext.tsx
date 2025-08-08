@@ -6,6 +6,7 @@ import type { IMedicineProp } from '../types/medicine'
 interface CartContextType {
   cart: IMedicineProp[]
   addToCart: (item: IMedicineProp) => void
+  clearCart: () => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -17,8 +18,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((prev) => [...prev, item])
   }
 
+  const clearCart = () => {
+    setCart([])
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   )
