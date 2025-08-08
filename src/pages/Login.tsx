@@ -19,7 +19,6 @@ export default function Login() {
     <>
       <div
         className="d-flex justify-content-center align-items-center vh-100"
-       
       >
         <div
           className="card shadow p-4"
