@@ -161,9 +161,9 @@ export default function OrderDetail() {
                               </div>
                             </td>
                             <td>₹{item.price.toFixed(2)}</td>
-                            <td>{item.qty || 1}</td>
+                            <td>{item.quantity || 1}</td>
                             <td>{item.discount}%</td>
-                            <td>₹{(finalPrice * (item.qty || 1)).toFixed(2)}</td>
+                            <td> ₹{(finalPrice * (item.quantity ?? 1)).toFixed(2)}</td>
                           </tr>
                         );
                       })}
@@ -179,7 +179,7 @@ export default function OrderDetail() {
                 <h5 className="fw-bold mb-3">Order Summary</h5>
                 <div className="d-flex justify-content-between mb-2">
                   <span>Subtotal:</span>
-                  <span>₹{orderTotal.toFixed(2)}</span>
+                  <span>₹{order.total}</span>
                 </div>
                 <div className="d-flex justify-content-between mb-2">
                   <span>Shipping:</span>
@@ -188,7 +188,7 @@ export default function OrderDetail() {
                 <hr />
                 <div className="d-flex justify-content-between fw-bold">
                   <span>Total:</span>
-                  <span>₹{orderTotal.toFixed(2)}</span>
+                  <span>₹{order.total}</span>
                 </div>
                 <div className="mt-4">
                   <button

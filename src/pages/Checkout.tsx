@@ -22,38 +22,38 @@ export default function Checkout() {
 
   const total = cart.reduce((sum, item) => {
     const finalPrice = item.price - (item.price * item.discount) / 100;
-    return sum + finalPrice;
+    return sum + finalPrice * (item.quantity || 1);
   }, 0);
 
-  const handleChange = (e : any) => {
+  const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handlePlaceOrder = () => {
-  const order: IOrder = {
-    id: `ORD${Date.now()}`, // Generate a unique order ID
-    date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
-    status: "Pending", // Default status
-    shippingInfo: {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      address: formData.address,
-      city: formData.city,
-      pincode: formData.pincode,
-    },
-    items: cart.map(item => ({
-      ...item,
-      qty: 1, // Or use item.qty if you have quantity in cart
-    })),
-    total,
-    paymentMethod: formData.payment,
+    const order: IOrder = {
+      id: `ORD${Date.now()}`, // Generate a unique order ID
+      date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+      status: "Pending", // Default status
+      shippingInfo: {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        pincode: formData.pincode,
+      },
+      items: cart.map(item => ({
+        ...item,
+        qty: 1, // Or use item.qty if you have quantity in cart
+      })),
+      total,
+      paymentMethod: formData.payment,
+    };
+
+    addOrder(order);
+    clearCart();
+    navigate("/orders");
   };
-  
-  addOrder(order);
-  clearCart();
-  navigate("/orders");
-};
 
   return (
     <>
@@ -203,13 +203,14 @@ export default function Checkout() {
                 {cart.map((item, idx) => {
                   const finalPrice =
                     item.price - (item.price * item.discount) / 100;
+                  const itemTotal = finalPrice * (item.quantity || 1); 
                   return (
                     <div
                       key={idx}
                       className="d-flex justify-content-between mb-2"
                     >
-                      <span>{item.name}</span>
-                      <span>₹{finalPrice.toFixed(2)}</span>
+                      <span>{item.name} × {item.quantity || 1}</span>
+                      <span>₹{itemTotal.toFixed(2)}</span>
                     </div>
                   );
                 })}

@@ -35,10 +35,6 @@ export default function Orders() {
           ) : (
             <div className="row g-4">
               {orders.map((order, idx) => {
-                const orderTotal = order.items.reduce((sum, item) => {
-                  const finalPrice = item.price - (item.price * item.discount) / 100;
-                  return sum + finalPrice * (item.qty || 1);
-                }, 0);
 
                 return (
                   <div
@@ -118,10 +114,10 @@ export default function Orders() {
                             <div>
                               <h6 className="mb-1">{item.name}</h6>
                               <small className="text-muted">
-                                Qty: {item.qty || 1} | Discount: {item.discount}%
+                                Qty: {item.quantity || 1} | Discount: {item.discount}%
                               </small>
                               <p className="fw-bold text-success mb-0">
-                                ₹{finalPrice.toFixed(2)}
+                                 ₹{(finalPrice * (item.quantity ?? 1)).toFixed(2)}
                               </p>
                             </div>
                           </div>
@@ -131,7 +127,7 @@ export default function Orders() {
 
                     {/* Order Footer */}
                     <div className="d-flex justify-content-between align-items-center mt-3">
-                      <strong>Total: ₹{orderTotal.toFixed(2)}</strong>
+                      <strong>Total: ₹{order.total}</strong>
                       <button
                         className="btn btn-outline-primary rounded-pill px-4"
                        onClick={() => navigate(`/orders/${order.id}`)} // You can implement order details page later
