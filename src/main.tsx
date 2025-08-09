@@ -4,14 +4,16 @@ import App from './App.tsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CartProvider } from './context/CartContext'
 import { OrderProvider } from './context/OrderContext.tsx';
+import { BlogProvider } from "./context/BlogContext.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <OrderProvider>
-    <CartProvider>
-        <App />
-    </CartProvider>
-
-    </OrderProvider>
+    <BlogProvider>
+      <OrderProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </OrderProvider>
+    </BlogProvider>
   </StrictMode>,
 )

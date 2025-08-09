@@ -11,6 +11,8 @@ import Home from './pages/Home';
 import Checkout from './pages/Checkout';
 import Order from './pages/Orders';
 import OrderDetail from './pages/OrderDetail';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Order />} />
         <Route path="/orders/:id" element={<OrderDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

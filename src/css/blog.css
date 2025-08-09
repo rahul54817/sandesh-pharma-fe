@@ -1,0 +1,54 @@
+/* src/styles/blog.css */
+.blog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Comments section styling */
+.comments-section {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.comment-card {
+  transition: all 0.3s ease;
+}
+
+.comment-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-avatar {
+  flex-shrink: 0;
+}
+
+.comment-actions button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .comments-section {
+    padding: 1rem;
+  }
+  
+  .comment-card {
+    padding: 1rem;
+  }
+  
+  .comment-actions button {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
