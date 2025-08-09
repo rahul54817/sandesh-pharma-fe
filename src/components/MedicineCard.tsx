@@ -3,7 +3,7 @@ import type { IMedicineProp } from "../types/medicine";
 import { useState } from "react";
 
 interface Props extends IMedicineProp {
-  onAdd?: () => void;
+  onAdd?:  (qty: number) => void;
 }
 
 export default function MedicineCard({
@@ -20,7 +20,7 @@ export default function MedicineCard({
 
   const handleAddToCart = () => {
     if (onAdd) {
-      onAdd(); // Call the onAdd callback if provided
+      onAdd(quantity); // Call the onAdd callback if provided
     }
   };
 
@@ -62,7 +62,7 @@ export default function MedicineCard({
       <div className="card-body text-center p-3">
         <h5 className="card-title fw-bold text-primary mb-2">
           <Link
-            to={`/medicines/${id || name}`}
+            to={`/medicines/${id}`}
             className="text-decoration-none text-primary"
           >
             {name}

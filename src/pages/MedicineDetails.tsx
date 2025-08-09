@@ -6,13 +6,13 @@ import { useCart } from "../context/CartContext"; // ✅ Cart Context import
 import { useState } from "react";
 
 export default function MedicineDetails() {
-  const { name } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart(); // ✅ Get addToCart function from context
 
   const [added, setAdded] = useState(false); // ✅ For showing feedback
 
-  const medicine = medicineList.find((med) => med.name === name);
+  const medicine = medicineList.find((med) => med.id === id);
 
   if (!medicine) {
     return (

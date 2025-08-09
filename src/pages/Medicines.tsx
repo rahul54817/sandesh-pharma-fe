@@ -60,7 +60,7 @@ export default function Medicines() {
               <div className="col-12 col-sm-6 col-md-4 mb-4" key={med.id}>
                 <MedicineCard
                   {...med}
-                  onAdd={() => addToCart({ ...med, quantity: 1 })}
+                  onAdd={(qty) => addToCart({ ...med, quantity: qty })}
                 />
               </div>
             ))}

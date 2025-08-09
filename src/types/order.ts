@@ -38,6 +38,7 @@ export interface IOrder {
     qty: number;
     discount: number;
     description?: string;
+    quantity ?: number
   }>;
   total: number;
   paymentMethod: string;
