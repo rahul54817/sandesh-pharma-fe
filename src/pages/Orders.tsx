@@ -56,7 +56,7 @@ export default function Orders() {
                             ? "bg-success"
                             : "bg-warning text-dark"
                         }`}
-                        style={{ fontSize: "0.9rem" }}
+                        style={{ fontSize: "0.7rem" }}
                       >
                         {order.status || "Pending"}
                       </span>
