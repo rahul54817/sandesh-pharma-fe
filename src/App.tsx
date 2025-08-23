@@ -13,6 +13,7 @@ import Order from './pages/Orders';
 import OrderDetail from './pages/OrderDetail';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import UploadPrescription from './pages/UploadPrescription';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="/upload-prescription" element={<UploadPrescription />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
