@@ -48,7 +48,7 @@ export default function Header() {
                 About
               </Link>
             </li>
-             <li className="nav-item">
+            <li className="nav-item">
               <Link to="/blog" className="nav-link">
                 Blogs
               </Link>
@@ -61,6 +61,12 @@ export default function Header() {
             <li className="nav-item">
               <Link to="/medicines" className="nav-link">
                 Products
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/upload-prescription">
+                <i className="bi bi-prescription me-1"></i>
+                Upload Prescription
               </Link>
             </li>
             <li className="nav-item">
@@ -78,7 +84,7 @@ export default function Header() {
                 {cart.length > 0 && (
                   <span
                     className="position-absolute top-0 start-80 translate-middle-x badge rounded-pill bg-danger"
-                    style={{ top: '10px' }} 
+                    style={{ top: '10px' }}
                   >
                     {cart.length}
                   </span>
