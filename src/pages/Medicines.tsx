@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Medicines() {
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-  const { addToCart, cart } = useCart();
+  const { cart } = useCart();
   const navigate = useNavigate();
 
   const filtered = medicineList.filter((med) =>
