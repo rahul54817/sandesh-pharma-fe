@@ -4,12 +4,12 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cart, increaseQuantity, decreaseQuantity, removeItem } = useCart();
+  const { cart, removeItem, updateQuantity } = useCart();
   const navigate = useNavigate();
 
   const total = cart.reduce((sum, item) => {
     const finalPrice = item.price - (item.price * item.discount) / 100;
-    return sum + (finalPrice * item.quantity);
+    return sum + finalPrice * item.quantity;
   }, 0);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -18,6 +18,14 @@ export default function Cart() {
     navigate("/checkout");
   };
 
+  const handleQuantityChange = (itemId: string, value: number, stock: number) => {
+    if (value <= 0) return;
+    if (value > stock) {
+      updateQuantity(itemId, stock); // cap at stock
+    } else {
+      updateQuantity(itemId, value);
+    }
+  };
 
   return (
     <>
@@ -51,14 +59,15 @@ export default function Cart() {
               <div className="col-12 col-lg-8">
                 <div
                   style={{
-                    maxHeight: "500px", // limit visible height
-                    overflowY: "auto", // vertical scroll
-                    paddingRight: "5px", // avoid content cut-off
+                    maxHeight: "500px",
+                    overflowY: "auto",
+                    paddingRight: "5px",
                   }}
                 >
                   {cart.map((item, idx) => {
                     const finalPrice =
                       item.price - (item.price * item.discount) / 100;
+                    const isOutOfStock = item.quantity > item.stock;
 
                     return (
                       <div
@@ -100,30 +109,47 @@ export default function Cart() {
                         {/* Product Info */}
                         <div className="flex-grow-1">
                           <h5 className="mb-1">{item.name}</h5>
-                          <p className="mb-1 text-muted">
-                            Discount: {item.discount}%
+                          <p className="text-muted mb-1">
+                            Per strip of {item.packInfo} tablets
                           </p>
-                          <p className="fw-bold text-success mb-0">
-                            ₹{finalPrice.toFixed(2)}
+                          <p className="mb-1">
+                            <span className="fw-bold text-success">
+                              ₹{finalPrice.toFixed(2)}
+                            </span>
+                            <span className="text-muted text-decoration-line-through ms-2">
+                              ₹{item.price.toFixed(2)}
+                            </span>
+                            <span className="text-danger ms-2">
+                              ({item.discount}% OFF)
+                            </span>
+                            <span> | Stock: {item.stock}</span>
                           </p>
+                          {isOutOfStock && (
+                            <p className="text-danger fw-bold mb-0">
+                              Out of Stock! Reduce quantity.
+                            </p>
+                          )}
                         </div>
 
                         {/* Quantity */}
                         <div className="ms-auto d-flex align-items-center">
-                          <button
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={() => decreaseQuantity(item.id)}
-                            disabled={item.quantity <= 1}
-                          >
-                            -
-                          </button>
-                          <span className="mx-2">{item.quantity}</span>
-                          <button
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={() => increaseQuantity(item.id)}
-                          >
-                            +
-                          </button>
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              handleQuantityChange(
+                                item.id,
+                                Number(e.target.value),
+                                item.stock
+                              )
+                            }
+                            className={`form-control text-center mx-2 ${
+                              isOutOfStock ? "border border-danger" : ""
+                            }`}
+                            style={{ width: "70px" }}
+                          />
+
                           <button
                             className="btn btn-danger btn-sm ms-2"
                             onClick={() => removeItem(item.id)}
@@ -131,7 +157,6 @@ export default function Cart() {
                             ×
                           </button>
                         </div>
-
                       </div>
                     );
                   })}
@@ -147,11 +172,11 @@ export default function Cart() {
                   <h4 className="fw-bold mb-3">Order Summary</h4>
                   <div className="d-flex justify-content-between mb-2">
                     <span>Total Items:</span>
-                    <span>{totalItems}</span> {/* Now shows sum of quantities */}
+                    <span>{totalItems}</span>
                   </div>
                   <div className="d-flex justify-content-between mb-3">
                     <span>Total Price:</span>
-                    <span className="fw-bold">₹{total.toFixed(2)}</span> {/* Correct total */}
+                    <span className="fw-bold">₹{total.toFixed(2)}</span>
                   </div>
                   <button
                     className="btn btn-success w-100 py-2 rounded-pill fw-bold"
@@ -160,6 +185,7 @@ export default function Cart() {
                       border: "none",
                     }}
                     onClick={handleCheckout}
+                    disabled={cart.some((i) => i.quantity > i.stock)} // prevent checkout if invalid
                   >
                     Proceed to Checkout
                   </button>
