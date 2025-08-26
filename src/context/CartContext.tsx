@@ -14,6 +14,7 @@ interface CartContextType {
   increaseQuantity: (id: string) => void
   decreaseQuantity: (id: string) => void
   removeItem: (id: string) => void
+  updateQuantity: (id: string, qty: number) => void   // ✅ Added here
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -29,15 +30,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [cart])
 
   const addToCart = (item: ICartItem) => {
-  setCart(prev => {
+    setCart(prev => {
     const existingItem = prev.find(cartItem => cartItem.id === item.id);
-    if (existingItem) {
-      return prev.map(cartItem =>
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-          : cartItem
+      if (existingItem) {
+        return prev.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
       );
-    }
+  }
     return [...prev, item];
   });
 };
@@ -60,6 +61,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     )
   }
 
+  const updateQuantity = (id: string, qty: number) => {
+    setCart(prev =>
+      prev.map(item =>
+        item.id === id ? { ...item, quantity: Math.max(1, qty) } : item
+      )
+    )
+  }
+
   const removeItem = (id: string) => {
     setCart(prev => prev.filter(item => item.id !== id))
   }
@@ -77,6 +86,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         increaseQuantity,
         decreaseQuantity,
         removeItem,
+        updateQuantity,   // ✅ Provided here
       }}
     >
       {children}

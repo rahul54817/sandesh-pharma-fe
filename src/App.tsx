@@ -14,10 +14,12 @@ import OrderDetail from './pages/OrderDetail';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import UploadPrescription from './pages/UploadPrescription';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path='/' element={<Home />} />

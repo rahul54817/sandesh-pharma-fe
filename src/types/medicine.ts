@@ -5,6 +5,9 @@ export interface IMedicineProp {
   discount : number;
   description?: string
   image ?: string;
+  category ?: string
+  packInfo : number,
+  stock : number
 }
 
 export interface ICartItem extends IMedicineProp {
